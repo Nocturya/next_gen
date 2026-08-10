@@ -89,6 +89,24 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
             return ...
         end;
     end;
+
+    do
+        game:GetService("ScriptContext").Error:Connect(function(msg, trace, scr)
+            if not scr or trace:find("''") or msg:find("''") then
+                pcall(function()
+                    if not (trace and trace:find("cl_%d+%.Client") and game_name == "Arsenal") then
+               --       nocturya_safe_debug = "Arsenal detected for not get kicked by Loader"
+                    elseif game_name ~= "Arsenal" then
+                        if not scr or trace:find("''") or msg:find("''") then
+                            local_player:Kick("Fatal error detected\n" .. tostring(msg))
+                        end;
+                    end;
+                end)
+            end;
+        end;        
+    end;
+
+    
 else
     nocturya_kick_reason = "[Fatal Error] \n loader framework mismatch or not found block 1";
 end;
