@@ -1,6 +1,6 @@
 local market_place_service = game:GetService("MarketplaceService");
 local http_request = request or http_request or (syn and syn.request) or (http and http.request) or (fluxus and fluxus.request);
-
+local clipboard = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set);
 local game_name = market_place_service and market_place_service:GetProductInfo(game.PlaceId).Name;
 
 -- loader framework needed
@@ -21,6 +21,73 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
 
     if (not executor or executor == nil) then
         nocturya_kick_reason = "[Fatal Error] \n Your executor dont support [getexecutorname] block 2";
+    end;
+
+    -- Services
+    if not cloneref then
+        nocturya_kick_reason = "[Fatal Error] \n Your executor dont support [cloneref] block 3"
+
+        cloneref = function(reference)
+            return reference
+        end;
+    end;
+
+    if not getgenv then
+        nocturya_kick_reason = "[Fatal Error] \n Your executor dont support [getgenv] block 3"
+         
+        getgenv = function()
+            return _G
+        end;
+    end;
+
+    if not loadfile then
+        nocturya_kick_reason = "[Fatal Error] \n Your executor dont support [loadfile] block 3"
+
+        loadfile = function(...)
+            return ...
+        end;
+    end;
+
+    if not readfile then
+        nocturya_kick_reason = "[Fatal Error] \n Your executor dont support [readfile] block 3"
+
+        readfile = function(...)
+            return ...
+        end;
+    end;
+
+    if not newcclosure then
+        nocturya_kick_reason = "[Fatal Error] \n Your executor dont support [newcclosure] block 3"
+
+        newcclosure = function(...)
+            return ...
+        end;
+    end;
+
+    if not hookfunction then
+        nocturya_kick_reason = "[Fatal Error] \n Your executor dont support [hookfunction] block 3"
+       
+        hookfunction = function() end
+    end;
+
+    if not debug.traceback and not debug.getupvalue and not debug.getupvalues and not debug.setupvalue then
+        nocturya_kick_reason = "[Fatal Error] \n Your executor dont support [debug ...] block 3"
+        
+        debug.traceback = function(...)
+            return ...
+        end;
+
+        debug.getupvalue = function(...)
+            return ...
+        end;
+
+        debug.getupvalues = function(...)
+            return ...
+        end;
+
+        debug.setupvalue = function(...)
+            return ...
+        end;
     end;
 else
     nocturya_kick_reason = "[Fatal Error] \n loader framework mismatch or not found block 1";
