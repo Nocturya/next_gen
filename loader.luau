@@ -1,5 +1,8 @@
 local market_place_service = game:GetService("MarketplaceService");
+local http_request = request or http_request or (syn and syn.request) or (http and http.request) or (fluxus and fluxus.request);
+
 local game_name = market_place_service and market_place_service:GetProductInfo(game.PlaceId).Name;
+
 -- loader framework needed
 local get_change_logs = "https://raw.githubusercontent.com/Nocturya/next_gen/refs/heads/main/change_logs_framework";
 local get_version_scripts = "https://raw.githubusercontent.com/Nocturya/next_gen/refs/heads/main/version_scripts_framework";
