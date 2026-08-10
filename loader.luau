@@ -1,4 +1,4 @@
 local market_place_service = game:GetService("MarketplaceService")
-local game_name = market_place_service and market_place_service:GetProductInfo(game.PlaceId).Name
+local get_change_logs = ""
 
-print(game_name)
+local game_name = market_place_service and market_place_service:GetProductInfo(game.PlaceId).Name
