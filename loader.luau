@@ -11,6 +11,6 @@ local missing_function = "";
 
 if (not change_logs) or (not version_scripts) or (not missing_function) then
     nocturya_kick_reason = "[Fatal Error], loader framework mismatch or not found block 1"
-elseif (change_logs and change_logs ~= nil) and (version_scripts and version_scripts ~= nil) and (missing_function and missing_function ~= nil) then
+elseif (change_logs and (change_logs ~= nil or change_logs == "")) and (version_scripts and (version_scripts ~= nil or version_scripts == "")) and (missing_function and (missing_function ~= nil or missing_function == "")) then
 
 end
