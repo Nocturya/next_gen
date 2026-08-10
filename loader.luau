@@ -6,7 +6,6 @@ local game_name = market_place_service and market_place_service:GetProductInfo(g
 -- loader framework needed
 local change_logs = "https://raw.githubusercontent.com/Nocturya/next_gen/refs/heads/main/change_logs_framework";
 local version_scripts = "https://raw.githubusercontent.com/Nocturya/next_gen/refs/heads/main/version_scripts_framework";
-local missing_function = "";
 --
 
 if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scripts and (version_scripts ~= nil or version_scripts ~= "")) and (missing_function and (missing_function ~= nil or missing_function ~= "")) then
@@ -105,8 +104,6 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
             end;
         end;        
     end;
-
-    
 else
     nocturya_kick_reason = "[Fatal Error] \n loader framework mismatch or not found block 1";
 end;
