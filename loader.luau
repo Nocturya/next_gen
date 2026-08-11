@@ -507,6 +507,8 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
             return loadstring(game:HttpGet("https://jnkie.com/sdk/library.lua"))()
         end);
 
+        print("CLICK DETECTED WAIT")
+
         if not success or not junkie_api then
             key_box.PlaceholderText = "Error with API JUNKIE: Please report this error messsage block 4";
 
@@ -539,31 +541,32 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
                 ["Arsenal"] = {
                     status = "undected",
                     level = "hight",
-                    run_script_url = ""
+                    run_script_url = "https://api.jnkie.com/api/v1/luascripts/public/731ec1499f053bdac494b3a7c2810c6268375e98e0a584f862f97aa67201c929/download"
                 },
  
                 ["Gunfight Arena"] = {
                     status = "undected",
                     level = "hight",
-                    run_script_url = ""
+                    run_script_url = "https://api.jnkie.com/api/v1/luascripts/public/731ec1499f053bdac494b3a7c2810c6268375e98e0a584f862f97aa67201c929/download"
                 },
 
                 ["Project Delta"] = {
                     status = "undected",
                     level = "hight",
-                    run_script_url = ""
+                    run_script_url = "https://api.jnkie.com/api/v1/luascripts/public/731ec1499f053bdac494b3a7c2810c6268375e98e0a584f862f97aa67201c929/download"
                 },
 
                 ["Universal"] = {
                     status = "undected",
                     level = "hight",
-                    run_script_url = ""
+                    run_script_url = "https://api.jnkie.com/api/v1/luascripts/public/731ec1499f053bdac494b3a7c2810c6268375e98e0a584f862f97aa67201c929/download"
                 },
             }
 
             local game_info = run_script[game_name] or run_script["Universal"];
 
             if game_info and game_info.run_script_url and game_info.run_script_url ~= "" then
+                print(game_info, game_info.run_script_url)
                 local load_success, load_error = pcall(function()
                     loadstring(game:HttpGet(game_info.run_script_url))()
                 end);
@@ -589,9 +592,11 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
                 else
                     warn("Load script internal 2");
                 end;
+
+                nocturya_loader_ui:Destroy()
             end;
         else -- error with api junkie or anything else
-            local error_api_junkie = (validation and (validation.error or validation.message)) or "Error unknow block 6";
+            local error_api_junkie = (validation and validation.error) or "Error unknow block 6";
 
             if error_api_junkie == "KEY_EXPIRED" then
                 if debug_rconsoleprint then
@@ -643,7 +648,7 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
         key_frame.Visible = false
     end);
 
-    while not getgenv().SCRIPT_KEY and not getgenv().UI_CLOSED do
+    while not getgenv().SCRIPT_KEY do
         task.wait(0.1)
     end;
 
