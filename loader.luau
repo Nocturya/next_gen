@@ -20,8 +20,7 @@ local change_logs = "https://raw.githubusercontent.com/Nocturya/next_gen/refs/he
 local version_scripts = "https://raw.githubusercontent.com/Nocturya/next_gen/refs/heads/main/version_scripts_framework";
 --
 
-if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scripts and (version_scripts ~= nil or version_scripts ~= "")) and (missing_function and (missing_function ~= nil or missing_function ~= "")) then
-    if (not executor) then
+if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scripts and (version_scripts ~= nil or version_scripts ~= "")) then
         executor = getexecutorname() or nil
     end;
 
