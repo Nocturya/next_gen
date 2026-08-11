@@ -29,7 +29,7 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
         local success, error = pcall(messagebox, body, title, id)
 
         if not success then
-             nocturya_kick_reason = "[Fatal Error] \n Your executor dont support [messagebox] block 4"
+            nocturya_kick_reason = "[Fatal Error] \n Your executor dont support [messagebox] block 4"
         end
 
         return error
@@ -144,6 +144,8 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
     end;
 
     -- end 
+
+    local script_key = getgenv().script_key or script_key or ""
 
     if (nocturya_debug and nocturya_debug == true) then
         if game_name ~= "Arsenal" then
@@ -325,12 +327,12 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
     key_box.Font = Enum.Font.Oswald
     key_box.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
     key_box.PlaceholderText = "Paste your key here"
-    key_box.Text = ""
+    key_box.Text = script_key
     key_box.TextColor3 = Color3.fromRGB(255, 255, 255)
     key_box.TextSize = 26
  
     local under_line = Instance.new("TextLabel")
-    under_line.Name = "underline"
+    under_line.Name = "under_line"
     under_line.Parent = key_box
     under_line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     under_line.BorderSizePixel = 0
@@ -434,39 +436,48 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
 
     close_button.MouseButton1Click:Connect(function()
         nocturya_loader_ui:Destroy()
-    end)
+    end);
 
     info_button.MouseButton1Click:Connect(function()
         info_frame.Visible = true
-    end)
+    end);
 
     info_bg.MouseButton1Click:Connect(function()
         info_frame.Visible = true
-    end)
+    end);
 
     info_close_button.MouseButton1Click:Connect(function()
         info_frame.Visible = false
-    end)
+    end);
 
     discord_button.MouseButton1Click:Connect(function()
         setclipboard("https://discord.gg/nxTJs7RV5d")
-    end)
+    end);
 
     discord_bg.MouseButton1Click:Connect(function()
         setclipboard("https://discord.gg/nxTJs7RV5d")
-    end)
+    end);
 
     run_button.MouseButton1Click:Connect(function()
         key_frame.Visible = true
-    end)
+    end);
 
     run_bg.MouseButton1Click:Connect(function()
         key_frame.Visible = true
-    end)
+    end);
+
+    key_run_bg.MouseButton1Click:Connect(function()
+        local key = key_box.Text
+
+        if key == "" or key == nil then
+            return
+        end
+    end);
+
 
     key_close_button.MouseButton1Click:Connect(function()
         key_frame.Visible = false
-    end)
+    end);
 
     local run_script = {
         ["Arsenal"] = {
@@ -503,5 +514,5 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
 else
     nocturya_kick_reason = "[Fatal Error] \n loader framework mismatch or not found block 1";
 end;
-
+print("ssss")
 print(nocturya_kick_reason)
