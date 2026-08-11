@@ -467,11 +467,7 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
 
             local get_key, error_key = junkie_api.get_key_link()
 
-            if get_key then
-                setclipboard(get_key)
-            end;
-
-            setclipboard(discord_server_official)
+            setclipboard(discord_server_official, get_key)
         end;
     end);
 
@@ -487,11 +483,7 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
 
             local get_key, error_key = junkie_api.get_key_link()
 
-            if get_key then
-                setclipboard(get_key)
-            end;
-
-            setclipboard(discord_server_official)
+            setclipboard(discord_server_official, get_key)
         end;
     end);
 
@@ -510,8 +502,6 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
             key_box.PlaceholderText = "Key invalid !"
             return
         end;
-
-        getgenv().SCRIPT_KEY = key 
 
         local success, junkie_api = pcall(function() 
             return loadstring(game:HttpGet("https://jnkie.com/sdk/library.lua"))()
@@ -533,9 +523,10 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
         junkie_api.identifier = "11731";
         junkie_api.provider = "Nocturya";
 
-        local junkie_api = Junkie.check_key(key)
+        local validation = junkie_api.check_key(key)
 
         if validation and validation.valid then
+            getgenv().SCRIPT_KEY = key
             key_run_bg.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
 
             if debug_rconsoleprint then
@@ -572,9 +563,9 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
 
             local game_info = run_script[game_name] or run_script["Universal"];
 
-            if game_info and game_info.run_script_utl and game_info.run_script_utl ~= "" then
+            if game_info and game_info.run_script_url and game_info.run_script_url ~= "" then
                 local load_success, load_error = pcall(function()
-                    loadstring(game:HttpGet(game_info.run_script_utl))()
+                    loadstring(game:HttpGet(game_info.run_script_url))()
                 end);
 
                 if load_success then
@@ -648,10 +639,13 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
         end;
     end);
 
-
     key_close_button.MouseButton1Click:Connect(function()
         key_frame.Visible = false
-    end);    
+    end);
+
+    while not getgenv().SCRIPT_KEY and not getgenv().UI_CLOSED do
+        task.wait(0.1)
+    end;
 
     do
         game:GetService("ScriptContext").Error:Connect(function(msg, trace, scr)
@@ -660,7 +654,6 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
             --      nocturya_safe_debug = "Arsenal detected for not get kicked by Loader"
                 else
                     if not scr or trace:find("''") or msg:find("''") then
-                        print("ssssssssssss kikc")
                         nocturya_player:Kick("Fatal error detected\n" .. tostring(msg))
                     end;
                 end
@@ -670,5 +663,6 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
 else
     nocturya_kick_reason = "[Fatal Error] \n loader framework mismatch or not found block 1";
 end;
-print("ssss")
+
 print(nocturya_kick_reason)
+
