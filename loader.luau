@@ -57,6 +57,7 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
                     if debug_preference == 6 then
                         if (not debug_rconsoleprint) then
                             debug_rconsoleprint = true;
+                            rconsolecreate()
                         end;
                     else
                         message_box("Debug messages will be displayed in the (F9) console", "Nocturya", 0)
@@ -455,11 +456,43 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
     end);
 
     discord_button.MouseButton1Click:Connect(function()
-        setclipboard(discord_server_official)
+        do
+            local success, junkie_api = pcall(function() 
+                return loadstring(game:HttpGet("https://jnkie.com/sdk/library.lua"))()
+            end);
+
+            junkie_api.service = "Nocturya";
+            junkie_api.identifier = "11731";
+            junkie_api.provider = "Nocturya";
+
+            local get_key, error_key = junkie_api.get_key_link()
+
+            if get_key then
+                setclipboard(get_key)
+            end;
+
+            setclipboard(discord_server_official)
+        end;
     end);
 
     discord_bg.MouseButton1Click:Connect(function()
-        setclipboard(discord_server_official)
+        do
+            local success, junkie_api = pcall(function() 
+                return loadstring(game:HttpGet("https://jnkie.com/sdk/library.lua"))()
+            end);
+
+            junkie_api.service = "Nocturya";
+            junkie_api.identifier = "11731";
+            junkie_api.provider = "Nocturya";
+
+            local get_key, error_key = junkie_api.get_key_link()
+
+            if get_key then
+                setclipboard(get_key)
+            end;
+
+            setclipboard(discord_server_official)
+        end;
     end);
 
     run_button.MouseButton1Click:Connect(function()
@@ -473,65 +506,166 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
     key_run_bg.MouseButton1Click:Connect(function()
         local key = key_box.Text
 
-        if key == "" or key == nil then
+        if not key or key == "" then
+            key_box.PlaceholderText = "Key invalid !"
+            return
+        end;
+
+        getgenv().SCRIPT_KEY = key 
+
+        local success, junkie_api = pcall(function() 
+            return loadstring(game:HttpGet("https://jnkie.com/sdk/library.lua"))()
+        end);
+
+        if not success or not junkie_api then
+            key_box.PlaceholderText = "Error with API JUNKIE: Please report this error messsage block 4";
+
+            if debug_rconsoleprint then
+                rconsoleprint("Error with API JUNKIE: Please report this error messsage block 4");
+            else
+                warn("Error with API JUNKIE: Please report this error messsage block 4")
+            end
+
             return
         end
+
+        junkie_api.service = "Nocturya";
+        junkie_api.identifier = "11731";
+        junkie_api.provider = "Nocturya";
+
+        local junkie_api = Junkie.check_key(key)
+
+        if validation and validation.valid then
+            key_run_bg.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+
+            if debug_rconsoleprint then
+                rconsoleprint("Key Valid: Welcome");
+            else
+                print("Key Valid: Welcome");
+            end;
+
+            local run_script = {
+                ["Arsenal"] = {
+                    status = "undected",
+                    level = "hight",
+                    run_script_url = ""
+                },
+ 
+                ["Gunfight Arena"] = {
+                    status = "undected",
+                    level = "hight",
+                    run_script_url = ""
+                },
+
+                ["Project Delta"] = {
+                    status = "undected",
+                    level = "hight",
+                    run_script_url = ""
+                },
+
+                ["Universal"] = {
+                    status = "undected",
+                    level = "hight",
+                    run_script_url = ""
+                },
+            }
+
+            local game_info = run_script[game_name] or run_script["Universal"];
+
+            if game_info and game_info.run_script_utl and game_info.run_script_utl ~= "" then
+                local load_success, load_error = pcall(function()
+                    loadstring(game:HttpGet(game_info.run_script_utl))()
+                end);
+
+                if load_success then
+                    if debug_rconsoleprint then
+                        rconsoleprint("SUCCESS WAIT SCRIPT LOADING ...");
+                    else
+                        print("SUCCESS WAIT SCRIPT LOADING ...");
+                    end;
+
+                    nocturya_loader_ui:Destroy()
+                else
+                    if debug_rconsoleprint then
+                        rconsoleprint("Failed to load script block 5", load_error);
+                    else
+                        warn("Failed to load script block 5", load_error);
+                    end
+                end
+            else
+                if debug_rconsoleprint then
+                    rconsoleprint("Load script internal 2");
+                else
+                    warn("Load script internal 2");
+                end;
+            end;
+        else -- error with api junkie or anything else
+            local error_api_junkie = (validation and (validation.error or validation.message)) or "Error unknow block 6";
+
+            if error_api_junkie == "KEY_EXPIRED" then
+                if debug_rconsoleprint then
+                    rconsoleprint("Key: Expired");
+                else
+                    warn("Key: Expired");
+                end;
+                    
+                key_box.PlaceholderText = "Key: Expired";
+
+            elseif error_api_junkie == "HWID_BANNED" then
+                if debug_rconsoleprint then
+                    rconsoleprint("You have been banned by Nocturya duration; Permanent");
+                else
+                    warn("You have been banned by Nocturya duration; Permanent");
+                end;
+                    
+                key_box.PlaceholderText = "You have been banned by Nocturya duration; Permanent";
+                
+            elseif error_api_junkie == "HWID_MISMATCH" then
+                if debug_rconsoleprint then
+                    rconsoleprint("Key: HWID MISMATCH you need to join the official server and reset your hwid");
+                else
+                    warn("Key: HWID MISMATCH you need to join the official server and reset your hwid");
+                end;
+                    
+                key_box.PlaceholderText = "Key: HWID MISMATCH you need to join the official server and reset your hwid"
+            elseif error_api_junkie == "SERVICE_MISMATCH" then
+                if debug_rconsoleprint then
+                    rconsoleprint("API JUNKIE ERROR: Block 6");
+                else
+                    warn("API JUNKIE ERROR: Block 6");
+                end;
+                    
+                key_box.PlaceholderText = "API JUNKIE ERROR: Block 6";
+            else
+                if debug_rconsoleprint then
+                    rconsoleprint("API JUNKIE ERROR: Block 7");
+                else
+                    warn("API JUNKIE ERROR: Block 7");
+                end;
+                    
+                key_box.PlaceholderText = "API JUNKIE ERROR: Block 7";
+            end;
+        end;
     end);
 
 
     key_close_button.MouseButton1Click:Connect(function()
         key_frame.Visible = false
-    end);
-
-    local run_script = {
-        ["Arsenal"] = {
-            status = "in developpement",
-            level = "hight",
-            run_script_utl = ""
-        },
-
-        ["Gunfight Arena"] = {
-            status = "undected",
-            level = "hight",
-            run_script_utl = ""
-        },
-
-        ["Prison Life"] = {
-            status = "undected",
-            level = "hight",
-            run_script_utl = "https://api.jnkie.com/api/v1/luascripts/public/fe86e9d4654a830a132515b852bcae7e719ae6b8b184ada95e7168b00d56e862/download"
-        },
-
-        ["Project Delta"] = {
-            status = "undected",
-            level = "hight",
-            run_script_utl = "https://api.jnkie.com/api/v1/luascripts/public/731ec1499f053bdac494b3a7c2810c6268375e98e0a584f862f97aa67201c929/download"
-        },
-
-        ["Universal"] = {
-            status = "undected",
-            level = "hight",
-            run_script_utl = ""
-        },
-    }
-
-    local game_info = run_script[game_name]
-    
+    end);    
 
     do
         game:GetService("ScriptContext").Error:Connect(function(msg, trace, scr)
-            if not scr or trace:find("''") or msg:find("''") then
-                pcall(function()
-                    if not (trace and trace:find("cl_%d+%.Client") and game_name == "Arsenal") then
-               --       nocturya_safe_debug = "Arsenal detected for not get kicked by Loader"
-                    elseif game_name ~= "Arsenal" then
-                        if not scr or trace:find("''") or msg:find("''") then
-                            nocturya_player:Kick("Fatal error detected\n" .. tostring(msg))
-                        end;
+            pcall(function()
+                if not (trace and trace:find("cl_%d+%.Client") and game_name == "Arsenal") then
+            --      nocturya_safe_debug = "Arsenal detected for not get kicked by Loader"
+                else
+                    if not scr or trace:find("''") or msg:find("''") then
+                        print("ssssssssssss kikc")
+                        nocturya_player:Kick("Fatal error detected\n" .. tostring(msg))
                     end;
-                end)
-            end;
-        end);        
+                end
+            end);
+        end);       
     end;
 else
     nocturya_kick_reason = "[Fatal Error] \n loader framework mismatch or not found block 1";
