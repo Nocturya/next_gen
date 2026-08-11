@@ -502,3 +502,5 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
 else
     nocturya_kick_reason = "[Fatal Error] \n loader framework mismatch or not found block 1";
 end;
+
+print(nocturya_kick_reason)
