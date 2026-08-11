@@ -45,7 +45,7 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
             local debug_enable = message_box("Do you want to enable debug mode ?", "Nocturya", 4)
            
             if (debug_enable == 6) then
-                getgenv().Nocturya_DEBUG == true;
+                getgenv().Nocturya_DEBUG = true;
 
                 if (rconsoleprint) then
                     local debug_preference = message_box("Do you want the debug output to be displayed via rconsoleprint ?", "Nocturya", 4)
