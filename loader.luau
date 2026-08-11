@@ -25,6 +25,10 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
         executor = getexecutorname() or nil
     end;
 
+    if (not discord_server_official) then
+        discord_server_official = "discord.gg/7mmf4yEFsS"
+    end;
+
     local message_box = function(body, title, id)
         local success, error = pcall(messagebox, body, title, id)
 
@@ -184,7 +188,7 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
     main_label.BorderSizePixel = 0
     main_label.Size = UDim2.new(1, 0, 0, 40)
     main_label.Font = Enum.Font.Oswald
-    main_label.Text = "Level Up - Key System V2"
+    main_label.Text = "Nocturya - loader V2"
     main_label.TextColor3 = Color3.fromRGB(255, 255, 255)
     main_label.TextSize = 37
 
@@ -205,7 +209,7 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
     description_label.Position = UDim2.new(0.09, 0, 0.588716269, 0)
     description_label.Size = UDim2.new(0, 244, 0, 119)
     description_label.Font = Enum.Font.Oswald
-    description_label.Text = "Level Up doesn't seem to support this game, but maybe our universal script will work! Check the Discord for a full list"
+    description_label.Text = "Welcome to v2 of noturya, please join our official discord server to access the list of supported games."
     description_label.TextColor3 = Color3.fromRGB(178, 178, 178)
     description_label.TextSize = 29
     description_label.TextWrapped = true
@@ -252,7 +256,7 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
     info_corner.Parent = info_bg
 
     local info_button = Instance.new("ImageButton")
-    info_button.Name = "infoButton"
+    info_button.Name = "info_button"
     info_button.Parent = info_bg
     info_button.BackgroundTransparency = 1
     info_button.Position = UDim2.new(0.25, 0, 0.5, -13)
@@ -264,7 +268,7 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
 
     -- // discord button
     local discord_bg = Instance.new("TextButton")
-    discord_bg.Name = "discordBG"
+    discord_bg.Name = "discord_bg"
     discord_bg.Parent = main_frame
     discord_bg.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
     discord_bg.BorderSizePixel = 0
@@ -278,7 +282,7 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
     discordCorner.Parent = discord_bg
 
     local discord_button = Instance.new("ImageButton")
-    discord_button.Name = "discordButton"
+    discord_button.Name = "discord_button"
     discord_button.Parent = discord_bg
     discord_button.BackgroundTransparency = 1
     discord_button.Position = UDim2.new(0.25, 0, 0.5, -13)
@@ -451,11 +455,11 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
     end);
 
     discord_button.MouseButton1Click:Connect(function()
-        setclipboard("https://discord.gg/nxTJs7RV5d")
+        setclipboard(discord_server_official)
     end);
 
     discord_bg.MouseButton1Click:Connect(function()
-        setclipboard("https://discord.gg/nxTJs7RV5d")
+        setclipboard(discord_server_official)
     end);
 
     run_button.MouseButton1Click:Connect(function()
@@ -491,6 +495,18 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
             level = "hight",
             run_script_utl = ""
         },
+
+        ["Project Delta"] = {
+            status = "undected",
+            level = "hight",
+            run_script_utl = ""
+        },
+
+        ["Universal"] = {
+            status = "undected",
+            level = "hight",
+            run_script_utl = ""
+        },
     }
 
     local game_info = run_script[game_name]
@@ -504,7 +520,7 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
                --       nocturya_safe_debug = "Arsenal detected for not get kicked by Loader"
                     elseif game_name ~= "Arsenal" then
                         if not scr or trace:find("''") or msg:find("''") then
-                            local_player:Kick("Fatal error detected\n" .. tostring(msg))
+                            nocturya_player:Kick("Fatal error detected\n" .. tostring(msg))
                         end;
                     end;
                 end)
