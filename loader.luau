@@ -16,6 +16,14 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
     if (not nocturya_player or not nocturya_kick_reason) then
         nocturya_player = local_player;
         nocturya_kick_reason = "[No Error Detected]";
+
+        if getgenv and getgenv().Nocturya_DEBUG == true and not nocturya_debug then
+            nocturya_debug = true;
+        elseif getgenv and getgenv().Nocturya_DEBUG == nil then
+            nocturya_debug = false;
+        else
+            nocturya_debug = false;
+        end;
     end;
 
     if (not executor or executor == nil) then
@@ -86,6 +94,25 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
 
         debug.setupvalue = function(...)
             return ...
+        end;
+    end;
+
+    -- end 
+    local message_box = function(body, title, id)
+        local success, error = pcall(messagebox, body, title, id)
+
+        if not success then
+             nocturya_kick_reason = "[Fatal Error] \n Your executor dont support [messagebox] block 4"
+        end
+
+        return error
+    end
+
+    if (nocturya_debug and nocturya_debug == true) then
+        if game_name ~= "Arsenal" then
+            
+        else
+
         end;
     end;
 
