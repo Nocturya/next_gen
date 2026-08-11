@@ -20,7 +20,8 @@ local change_logs = "https://raw.githubusercontent.com/Nocturya/next_gen/refs/he
 local version_scripts = "https://raw.githubusercontent.com/Nocturya/next_gen/refs/heads/main/version_scripts_framework";
 --
 
-if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scripts and (version_scripts ~= nil or version_scripts ~= "")) then
+if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scripts) == "string" and version_scripts ~= "" then
+    if (not executor) then
         executor = getexecutorname() or nil
     end;
 
@@ -120,7 +121,7 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
         nocturya_kick_reason = "[Fatal Error] \n Your executor dont support [hookfunction] block 3"
        
         hookfunction = function() end
-    end;
+    end; 
 
     if not debug.traceback and not debug.getupvalue and not debug.getupvalues and not debug.setupvalue then
         nocturya_kick_reason = "[Fatal Error] \n Your executor dont support [debug ...] block 3"
@@ -171,11 +172,11 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
     local main_corner = Instance.new("UICorner")
     main_corner.CornerRadius = UDim.new(0, 12)
     main_corner.Name = "main_corner"
-    main_corner.Parent = mainFrame
-
+    main_corner.Parent = main_frame
+ 
     local main_label = Instance.new("TextLabel")
     main_label.Name = "main_label"
-    main_label.Parent = mainFrame
+    main_label.Parent = main_frame
     main_label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     main_label.BackgroundTransparency = 1
     main_label.BorderSizePixel = 0
@@ -248,42 +249,42 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
     info_corner.CornerRadius = UDim.new(0, 16)
     info_corner.Parent = info_bg
 
-    local infoButton = Instance.new("ImageButton")
-    infoButton.Name = "infoButton"
-    infoButton.Parent = infoBG
-    infoButton.BackgroundTransparency = 1
-    infoButton.Position = UDim2.new(0.25, 0, 0.5, -13)
-    infoButton.Size = UDim2.new(0, 25, 0, 25)
-    infoButton.ZIndex = 2
-    infoButton.Image = "rbxassetid://3926305904"
-    infoButton.ImageRectOffset = Vector2.new(524, 444)
-    infoButton.ImageRectSize = Vector2.new(36, 36)
+    local info_button = Instance.new("ImageButton")
+    info_button.Name = "infoButton"
+    info_button.Parent = info_bg
+    info_button.BackgroundTransparency = 1
+    info_button.Position = UDim2.new(0.25, 0, 0.5, -13)
+    info_button.Size = UDim2.new(0, 25, 0, 25)
+    info_button.ZIndex = 2
+    info_button.Image = "rbxassetid://3926305904"
+    info_button.ImageRectOffset = Vector2.new(524, 444)
+    info_button.ImageRectSize = Vector2.new(36, 36)
 
     -- // discord button
-    local discordBG = Instance.new("TextButton")
-    discordBG.Name = "discordBG"
-    discordBG.Parent = mainFrame
-    discordBG.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
-    discordBG.BorderSizePixel = 0
-    discordBG.Position = UDim2.new(0.22, -26, 0.89, 0)
-    discordBG.Size = UDim2.new(0, 52, 0, 32)
-    discordBG.AutoButtonColor = false
-    discordBG.Text = ""
+    local discord_bg = Instance.new("TextButton")
+    discord_bg.Name = "discordBG"
+    discord_bg.Parent = main_frame
+    discord_bg.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
+    discord_bg.BorderSizePixel = 0
+    discord_bg.Position = UDim2.new(0.22, -26, 0.89, 0)
+    discord_bg.Size = UDim2.new(0, 52, 0, 32)
+    discord_bg.AutoButtonColor = false
+    discord_bg.Text = ""
 
     local discordCorner = Instance.new("UICorner")
     discordCorner.CornerRadius = UDim.new(0, 16)
-    discordCorner.Parent = discordBG
+    discordCorner.Parent = discord_bg
 
-    local discordButton = Instance.new("ImageButton")
-    discordButton.Name = "discordButton"
-    discordButton.Parent = discordBG
-    discordButton.BackgroundTransparency = 1
-    discordButton.Position = UDim2.new(0.25, 0, 0.5, -13)
-    discordButton.Size = UDim2.new(0, 25, 0, 25)
-    discordButton.ZIndex = 2
-    discordButton.Image = "rbxassetid://3926305904"
-    discordButton.ImageRectOffset = Vector2.new(164, 404)
-    discordButton.ImageRectSize = Vector2.new(36, 36)
+    local discord_button = Instance.new("ImageButton")
+    discord_button.Name = "discordButton"
+    discord_button.Parent = discord_bg
+    discord_button.BackgroundTransparency = 1
+    discord_button.Position = UDim2.new(0.25, 0, 0.5, -13)
+    discord_button.Size = UDim2.new(0, 25, 0, 25)
+    discord_button.ZIndex = 2
+    discord_button.Image = "rbxassetid://3926305904"
+    discord_button.ImageRectOffset = Vector2.new(164, 404)
+    discord_button.ImageRectSize = Vector2.new(36, 36)
 
     -- // :: Close Button
     local close_button = Instance.new("ImageButton")
@@ -301,7 +302,7 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
     -- // :: Key Frame
     local key_frame = Instance.new("Frame")
     key_frame.Name = "key_frame"
-    key_frame.Parent = levelUpLoader
+    key_frame.Parent = nocturya_loader_ui
     key_frame.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
     key_frame.BorderSizePixel = 0
     key_frame.Position = UDim2.new(0.5, -243, 0.5, 242)
@@ -327,19 +328,19 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
     key_box.Text = ""
     key_box.TextColor3 = Color3.fromRGB(255, 255, 255)
     key_box.TextSize = 26
-
-    local underline = Instance.new("TextLabel")
-    underline.Name = "underline"
-    underline.Parent = key_box
-    underline.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    underline.BorderSizePixel = 0
-    underline.Position = UDim2.new(0, 0, 1, 0)
-    underline.Size = UDim2.new(1, 0, 0, 1)
-    underline.Text = ""
+ 
+    local under_line = Instance.new("TextLabel")
+    under_line.Name = "underline"
+    under_line.Parent = key_box
+    under_line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    under_line.BorderSizePixel = 0
+    under_line.Position = UDim2.new(0, 0, 1, 0)
+    under_line.Size = UDim2.new(1, 0, 0, 1)
+    under_line.Text = ""
 
     local underline_corner = Instance.new("UICorner")
     underline_corner.CornerRadius = UDim.new(0, 32)
-    underline_corner.Parent = underline
+    underline_corner.Parent = under_line
 
     local key_run_bg = Instance.new("TextButton")
     key_run_bg.Name = "key_run_bg"
@@ -436,7 +437,7 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
     end)
 
     info_button.MouseButton1Click:Connect(function()
-        infoFrame.Visible = true
+        info_frame.Visible = true
     end)
 
     info_bg.MouseButton1Click:Connect(function()
@@ -463,7 +464,7 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
         key_frame.Visible = true
     end)
 
-    key_close_nutton.MouseButton1Click:Connect(function()
+    key_close_button.MouseButton1Click:Connect(function()
         key_frame.Visible = false
     end)
 
