@@ -223,16 +223,16 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
     run_corner.CornerRadius = UDim.new(0, 16)
     run_corner.Parent = run_bg
 
-    local runButton = Instance.new("ImageButton")
-    runButton.Name = "runButton"
-    runButton.Parent = runBG
-    runButton.BackgroundTransparency = 1
-    runButton.Position = UDim2.new(1, -36, 0.5, -12)
-    runButton.Size = UDim2.new(0, 24, 0, 24)
-    runButton.ZIndex = 2
-    runButton.Image = "rbxassetid://3926307971"
-    runButton.ImageRectOffset = Vector2.new(44, 284)
-    runButton.ImageRectSize = Vector2.new(36, 36)
+    local run_button = Instance.new("ImageButton")
+    run_button.Name = "run_button"
+    run_button.Parent = run_bg
+    run_button.BackgroundTransparency = 1
+    run_button.Position = UDim2.new(1, -36, 0.5, -12)
+    run_button.Size = UDim2.new(0, 24, 0, 24)
+    run_button.ZIndex = 2
+    run_button.Image = "rbxassetid://3926307971"
+    run_button.ImageRectOffset = Vector2.new(44, 284)
+    run_button.ImageRectSize = Vector2.new(36, 36)
 
     -- Info Button
     local info_bg = Instance.new("TextButton")
@@ -245,9 +245,9 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
     info_bg.AutoButtonColor = false
     info_bg.Text = ""
 
-    local infoCorner = Instance.new("UICorner")
-    infoCorner.CornerRadius = UDim.new(0, 16)
-    infoCorner.Parent = infoBG
+    local info_corner = Instance.new("UICorner")
+    info_corner.CornerRadius = UDim.new(0, 16)
+    info_corner.Parent = info_bg
 
     local infoButton = Instance.new("ImageButton")
     infoButton.Name = "infoButton"
@@ -300,170 +300,173 @@ if (change_logs and (change_logs ~= nil or change_logs ~= "")) and (version_scri
     close_button.ImageRectSize = Vector2.new(36, 36)
 
     -- // :: Key Frame
-    local keyFrame = Instance.new("Frame")
-    keyFrame.Name = "keyFrame"
-    keyFrame.Parent = levelUpLoader
-    keyFrame.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-    keyFrame.BorderSizePixel = 0
-    keyFrame.Position = UDim2.new(0.5, -243, 0.5, 242)
-    keyFrame.Size = UDim2.new(0, 487, 0, 85)
-    keyFrame.Visible = false
-    keyFrame.Draggable = true
-    keyFrame.Active = true
+    local key_frame = Instance.new("Frame")
+    key_frame.Name = "key_frame"
+    key_frame.Parent = levelUpLoader
+    key_frame.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+    key_frame.BorderSizePixel = 0
+    key_frame.Position = UDim2.new(0.5, -243, 0.5, 242)
+    key_frame.Size = UDim2.new(0, 487, 0, 85)
+    key_frame.Visible = false
+    key_frame.Draggable = true
+    key_frame.Active = true
 
-    local keyCorner = Instance.new("UICorner")
-    keyCorner.CornerRadius = UDim.new(0, 12)
-    keyCorner.Parent = keyFrame
+    local key_corner = Instance.new("UICorner")
+    key_corner.CornerRadius = UDim.new(0, 12)
+    key_corner.Parent = key_frame
 
-    local keyBox = Instance.new("TextBox")
-    keyBox.Name = "keyBox"
-    keyBox.Parent = keyFrame
-    keyBox.BackgroundTransparency = 1
-    keyBox.BorderSizePixel = 0
-    keyBox.Position = UDim2.new(0.034907598, 0, 0.2, 0)
-    keyBox.Size = UDim2.new(0, 399, 0, 50)
-    keyBox.Font = Enum.Font.Oswald
-    keyBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
-    keyBox.PlaceholderText = "Paste your key here"
-    keyBox.Text = ""
-    keyBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-    keyBox.TextSize = 26
+    local key_box = Instance.new("TextBox")
+    key_box.Name = "key_box"
+    key_box.Parent = key_frame
+    key_box.BackgroundTransparency = 1
+    key_box.BorderSizePixel = 0
+    key_box.Position = UDim2.new(0.034907598, 0, 0.2, 0)
+    key_box.Size = UDim2.new(0, 399, 0, 50)
+    key_box.Font = Enum.Font.Oswald
+    key_box.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+    key_box.PlaceholderText = "Paste your key here"
+    key_box.Text = ""
+    key_box.TextColor3 = Color3.fromRGB(255, 255, 255)
+    key_box.TextSize = 26
 
     local underline = Instance.new("TextLabel")
     underline.Name = "underline"
-    underline.Parent = keyBox
+    underline.Parent = key_box
     underline.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     underline.BorderSizePixel = 0
     underline.Position = UDim2.new(0, 0, 1, 0)
     underline.Size = UDim2.new(1, 0, 0, 1)
     underline.Text = ""
 
-    local underlineCorner = Instance.new("UICorner")
-    underlineCorner.CornerRadius = UDim.new(0, 32)
-    underlineCorner.Parent = underline
+    local underline_corner = Instance.new("UICorner")
+    underline_corner.CornerRadius = UDim.new(0, 32)
+    underline_corner.Parent = underline
 
-    local keyRunBG = Instance.new("TextButton")
-    keyRunBG.Name = "keyRunBG"
-    keyRunBG.Parent = keyBox
-    keyRunBG.BackgroundColor3 = Color3.fromRGB(23, 176, 0)
-    keyRunBG.BorderSizePixel = 0
-    keyRunBG.Position = UDim2.new(1.09899747, -26, 0.37, 0)
-    keyRunBG.Size = UDim2.new(0, 52, 0, 32)
-    keyRunBG.AutoButtonColor = false
-    keyRunBG.Text = ""
+    local key_run_bg = Instance.new("TextButton")
+    key_run_bg.Name = "key_run_bg"
+    key_run_bg.Parent = key_box
+    key_run_bg.BackgroundColor3 = Color3.fromRGB(23, 176, 0)
+    key_run_bg.BorderSizePixel = 0
+    key_run_bg.Position = UDim2.new(1.09899747, -26, 0.37, 0)
+    key_run_bg.Size = UDim2.new(0, 52, 0, 32)
+    key_run_bg.AutoButtonColor = false
+    key_run_bg.Text = ""
 
-local keyRunCorner = Instance.new("UICorner")
-keyRunCorner.CornerRadius = UDim.new(0, 16)
-keyRunCorner.Parent = keyRunBG
+    local key_run_corner = Instance.new("UICorner")
+    key_run_corner.CornerRadius = UDim.new(0, 16)
+    key_run_corner.Parent = key_run_bg
 
-local keyRunButton = Instance.new("ImageButton")
-keyRunButton.Name = "keyRunButton"
-keyRunButton.Parent = keyRunBG
-keyRunButton.BackgroundTransparency = 1
-keyRunButton.Position = UDim2.new(1, -36, 0.5, -12)
-keyRunButton.Size = UDim2.new(0, 24, 0, 24)
-keyRunButton.ZIndex = 2
-keyRunButton.Image = "rbxassetid://3926307971"
-keyRunButton.ImageRectOffset = Vector2.new(44, 284)
-keyRunButton.ImageRectSize = Vector2.new(36, 36)
+    local key_run_button = Instance.new("ImageButton")
+    key_run_button.Name = "key_run_button"
+    key_run_button.Parent = key_run_bg
+    key_run_button.BackgroundTransparency = 1
+    key_run_button.Position = UDim2.new(1, -36, 0.5, -12)
+    key_run_button.Size = UDim2.new(0, 24, 0, 24)
+    key_run_button.ZIndex = 2
+    key_run_button.Image = "rbxassetid://3926307971"
+    key_run_button.ImageRectOffset = Vector2.new(44, 284)
+    key_run_button.ImageRectSize = Vector2.new(36, 36)
 
-local keyCloseButton = Instance.new("ImageButton")
-keyCloseButton.Name = "keyCloseButton"
-keyCloseButton.Parent = keyFrame
-keyCloseButton.BackgroundTransparency = 1
-keyCloseButton.Position = UDim2.new(1, -30, 0, 5)
-keyCloseButton.Size = UDim2.new(0, 25, 0, 25)
-keyCloseButton.ZIndex = 2
-keyCloseButton.Image = "rbxassetid://3926305904"
-keyCloseButton.ImageColor3 = Color3.fromRGB(255, 90, 90)
-keyCloseButton.ImageRectOffset = Vector2.new(124, 124)
-keyCloseButton.ImageRectSize = Vector2.new(36, 36)
+    local key_close_button = Instance.new("ImageButton")
+    key_close_button.Name = "key_close_button"
+    key_close_button.Parent = key_frame
+    key_close_button.BackgroundTransparency = 1
+    key_close_button.Position = UDim2.new(1, -30, 0, 5)
+    key_close_button.Size = UDim2.new(0, 25, 0, 25)
+    key_close_button.ZIndex = 2
+    key_close_button.Image = "rbxassetid://3926305904"
+    key_close_button.ImageColor3 = Color3.fromRGB(255, 90, 90)
+    key_close_button.ImageRectOffset = Vector2.new(124, 124)
+    key_close_button.ImageRectSize = Vector2.new(36, 36)
 
--- Info Frame
-local infoFrame = Instance.new("Frame")
-infoFrame.Name = "infoFrame"
-infoFrame.Parent = levelUpLoader
-infoFrame.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-infoFrame.BorderSizePixel = 0
-infoFrame.Position = UDim2.new(0.5, -434, 0.5, -222)
-infoFrame.Size = UDim2.new(0, 264, 0, 353)
-infoFrame.Visible = false
-infoFrame.Draggable = true
-infoFrame.Active = true
+    -- Info Frame
+    local info_frame = Instance.new("Frame")
+    info_frame.Name = "info_frame"
+    info_frame.Parent = nocturya_loader_ui
+    info_frame.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+    info_frame.BorderSizePixel = 0
+    info_frame.Position = UDim2.new(0.5, -434, 0.5, -222)
+    info_frame.Size = UDim2.new(0, 264, 0, 353)
+    info_frame.Visible = false
+    info_frame.Draggable = true
+    info_frame.Active = true
 
-local infoCorner_2 = Instance.new("UICorner")
-infoCorner_2.CornerRadius = UDim.new(0, 12)
-infoCorner_2.Parent = infoFrame
+    local info_corner_2 = Instance.new("UICorner")
+    info_corner_2.CornerRadius = UDim.new(0, 12)
+    info_corner_2.Parent = info_frame
 
-local infoTitleLabel = Instance.new("TextLabel")
-infoTitleLabel.Name = "infoTitleLabel"
-infoTitleLabel.Parent = infoFrame
-infoTitleLabel.BackgroundTransparency = 1
-infoTitleLabel.BorderSizePixel = 0
-infoTitleLabel.Size = UDim2.new(1, 0, 0, 40)
-infoTitleLabel.Font = Enum.Font.Oswald
-infoTitleLabel.Text = "Information"
-infoTitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-infoTitleLabel.TextSize = 37
+    local info_title_label = Instance.new("TextLabel")
+    info_title_label.Name = "info_title_label"
+    info_title_label.Parent = info_frame
+    info_title_label.BackgroundTransparency = 1
+    info_title_label.BorderSizePixel = 0
+    info_title_label.Size = UDim2.new(1, 0, 0, 40)
+    info_title_label.Font = Enum.Font.Oswald
+    info_title_label.Text = "Information"
+    info_title_label.TextColor3 = Color3.fromRGB(255, 255, 255)
+    info_title_label.TextSize = 37
 
-local infoLabel = Instance.new("TextLabel")
-infoLabel.Name = "infoLabel"
-infoLabel.Parent = infoFrame
-infoLabel.BackgroundTransparency = 1
-infoLabel.BorderSizePixel = 0
-infoLabel.Position = UDim2.new(0.0369697325, 0, 0.126959875, 0)
-infoLabel.Size = UDim2.new(0, 244, 0, 295)
-infoLabel.Font = Enum.Font.Oswald
-infoLabel.Text = "Today's news: This update took way too long and I'm tired."
-infoLabel.TextColor3 = Color3.fromRGB(178, 178, 178)
-infoLabel.TextSize = 29
-infoLabel.TextWrapped = true
-infoLabel.TextYAlignment = Enum.TextYAlignment.Top
+    local info_label = Instance.new("TextLabel")
+    info_label.Name = "info_label"
+    info_label.Parent = info_frame
+    info_label.BackgroundTransparency = 1
+    info_label.BorderSizePixel = 0
+    info_label.Position = UDim2.new(0.0369697325, 0, 0.126959875, 0)
+    info_label.Size = UDim2.new(0, 244, 0, 295)
+    info_label.Font = Enum.Font.Oswald
+    info_label.Text = "Today's news: This update took way too long and I'm tired."
+    info_label.TextColor3 = Color3.fromRGB(178, 178, 178)
+    info_label.TextSize = 29
+    info_label.TextWrapped = true
+    info_label.TextYAlignment = Enum.TextYAlignment.Top
 
-local infoCloseButton = Instance.new("ImageButton")
-infoCloseButton.Name = "infoCloseButton"
-infoCloseButton.Parent = infoFrame
-infoCloseButton.BackgroundTransparency = 1
-infoCloseButton.Position = UDim2.new(1, -30, 0, 5)
-infoCloseButton.Size = UDim2.new(0, 25, 0, 25)
-infoCloseButton.ZIndex = 2
-infoCloseButton.Image = "rbxassetid://3926305904"
-infoCloseButton.ImageColor3 = Color3.fromRGB(255, 90, 90)
-infoCloseButton.ImageRectOffset = Vector2.new(124, 124)
-infoCloseButton.ImageRectSize = Vector2.new(36, 36)
+    local info_close_button = Instance.new("ImageButton")
+    info_close_button.Name = "info_close_button"
+    info_close_button.Parent = info_frame
+    info_close_button.BackgroundTransparency = 1
+    info_close_button.Position = UDim2.new(1, -30, 0, 5)
+    info_close_button.Size = UDim2.new(0, 25, 0, 25)
+    info_close_button.ZIndex = 2
+    info_close_button.Image = "rbxassetid://3926305904"
+    info_close_button.ImageColor3 = Color3.fromRGB(255, 90, 90)
+    info_close_button.ImageRectOffset = Vector2.new(124, 124)
+    info_close_button.ImageRectSize = Vector2.new(36, 36)
 
--- UI Functions (visuel uniquement)
-closeButton.MouseButton1Click:Connect(function()
-    levelUpLoader:Destroy()
-end)
+    close_button.MouseButton1Click:Connect(function()
+        nocturya_loader_ui:Destroy()
+    end)
 
-infoButton.MouseButton1Click:Connect(function()
-    infoFrame.Visible = true
-end)
-infoBG.MouseButton1Click:Connect(function()
-    infoFrame.Visible = true
-end)
-infoCloseButton.MouseButton1Click:Connect(function()
-    infoFrame.Visible = false
-end)
+    info_button.MouseButton1Click:Connect(function()
+        infoFrame.Visible = true
+    end)
 
-discordButton.MouseButton1Click:Connect(function()
-    setclipboard("https://discord.gg/nxTJs7RV5d")
-end)
-discordBG.MouseButton1Click:Connect(function()
-    setclipboard("https://discord.gg/nxTJs7RV5d")
-end)
+    info_bg.MouseButton1Click:Connect(function()
+        info_frame.Visible = true
+    end)
 
-runButton.MouseButton1Click:Connect(function()
-    keyFrame.Visible = true
-end)
-runBG.MouseButton1Click:Connect(function()
-    keyFrame.Visible = true
-end)
+    info_close_button.MouseButton1Click:Connect(function()
+        info_frame.Visible = false
+    end)
 
-keyCloseButton.MouseButton1Click:Connect(function()
-    keyFrame.Visible = false
-end)
+    discord_button.MouseButton1Click:Connect(function()
+        setclipboard("https://discord.gg/nxTJs7RV5d")
+    end)
+
+    discord_bg.MouseButton1Click:Connect(function()
+        setclipboard("https://discord.gg/nxTJs7RV5d")
+    end)
+
+    run_button.MouseButton1Click:Connect(function()
+        key_frame.Visible = true
+    end)
+
+    run_bg.MouseButton1Click:Connect(function()
+        key_frame.Visible = true
+    end)
+
+    key_close_nutton.MouseButton1Click:Connect(function()
+        key_frame.Visible = false
+    end)
 
     local run_script = {
         ["Arsenal"] = {
