@@ -539,15 +539,21 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
 
             local run_script = {
                 ["Arsenal"] = {
-                    status = "undected",
+                    status = "in developpement",
                     level = "hight",
-                    run_script_url = "https://api.jnkie.com/api/v1/luascripts/public/731ec1499f053bdac494b3a7c2810c6268375e98e0a584f862f97aa67201c929/download"
+                    run_script_url = ""
                 },
  
                 ["Gunfight Arena"] = {
                     status = "undected",
                     level = "hight",
-                    run_script_url = "https://api.jnkie.com/api/v1/luascripts/public/731ec1499f053bdac494b3a7c2810c6268375e98e0a584f862f97aa67201c929/download"
+                    run_script_url = ""
+                },
+
+                ["Prison Life"] = {
+                    status = "undected",
+                    level = "hight",
+                    run_script_url = "https://api.jnkie.com/api/v1/luascripts/public/fe86e9d4654a830a132515b852bcae7e719ae6b8b184ada95e7168b00d56e862/download"
                 },
 
                 ["Project Delta"] = {
@@ -559,11 +565,21 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
                 ["Universal"] = {
                     status = "undected",
                     level = "hight",
-                    run_script_url = "https://api.jnkie.com/api/v1/luascripts/public/731ec1499f053bdac494b3a7c2810c6268375e98e0a584f862f97aa67201c929/download"
+                    run_script_url = "https://raw.githubusercontent.com/Nocturya/next_gen/refs/heads/main/change_logs_framework"
                 },
             }
+            local game_info
 
-            local game_info = run_script[game_name] or run_script["Universal"];
+            for name, info in pairs(run_script) do
+                if name ~= "Universal" and string.lower(name) == string.lower(game_name) then
+                    game_info = info
+                    break
+                end
+            end
+
+            if (not game_info) then
+                game_info = run_script["Universal"];
+            end
 
             if game_info and game_info.run_script_url and game_info.run_script_url ~= "" then
                 print(game_info, game_info.run_script_url)
@@ -670,4 +686,3 @@ else
 end;
 
 print(nocturya_kick_reason)
-
