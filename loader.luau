@@ -485,7 +485,7 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
 
     local run_script = {
         ["Arsenal"] = {
-            status = "undected",
+            status = "in developpement",
             level = "hight",
             run_script_utl = ""
         },
@@ -496,10 +496,16 @@ if typeof(change_logs) == "string" and change_logs ~= "" and typeof(version_scri
             run_script_utl = ""
         },
 
+        ["Prison Life"] = {
+            status = "undected",
+            level = "hight",
+            run_script_utl = "https://api.jnkie.com/api/v1/luascripts/public/fe86e9d4654a830a132515b852bcae7e719ae6b8b184ada95e7168b00d56e862/download"
+        },
+
         ["Project Delta"] = {
             status = "undected",
             level = "hight",
-            run_script_utl = ""
+            run_script_utl = "https://api.jnkie.com/api/v1/luascripts/public/731ec1499f053bdac494b3a7c2810c6268375e98e0a584f862f97aa67201c929/download"
         },
 
         ["Universal"] = {
